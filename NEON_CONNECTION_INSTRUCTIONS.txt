@@ -1,0 +1,23 @@
+# WAITING FOR NEON CONNECTION DETAILS
+
+## What to do now:
+
+1. Click the **"Connect"** button in the "Connect to your database" card
+2. You'll see connection details like:
+   - Host
+   - Database name
+   - User
+   - Password
+   - Connection string
+
+3. Copy the connection string (it will look like):
+   ```
+   postgresql://username:password@ep-xxxxx.us-east-2.aws.neon.tech/neondb?sslmode=require
+   ```
+
+4. Share it here or note down:
+   - Host: ep-xxxxx.us-east-2.aws.neon.tech
+   - User: (username)
+   - Password: (password)
+
+Then we'll configure your local application!
