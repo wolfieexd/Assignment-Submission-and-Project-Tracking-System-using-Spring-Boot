@@ -1,12 +1,13 @@
-services:
+databases:
   # PostgreSQL Database
-  - type: pserv
-    name: assignment-db
+  - name: assignment-db
     plan: free
     region: oregon
     databaseName: assignment_system
-    databaseUser: assignment_user
+    user: assignment_user
     ipAllowList: []
+
+services:
 
   # User Service Backend
   - type: web
