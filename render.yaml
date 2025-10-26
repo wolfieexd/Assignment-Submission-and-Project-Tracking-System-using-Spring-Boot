@@ -12,11 +12,11 @@ services:
   # User Service Backend
   - type: web
     name: user-service
-    env: java
     plan: free
     region: oregon
-    buildCommand: cd backend/user-service && chmod +x build.sh && ./build.sh
-    startCommand: cd backend/user-service && java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/user-service-1.0.0.jar
+    env: docker
+    dockerfilePath: ./backend/user-service/Dockerfile
+    dockerContext: ./backend/user-service
     healthCheckPath: /actuator/health
     envVars:
       - key: JAVA_VERSION
@@ -45,11 +45,11 @@ services:
   # Submission Service Backend
   - type: web
     name: submission-service
-    env: java
     plan: free
     region: oregon
-    buildCommand: cd backend/submission-service && chmod +x build.sh && ./build.sh
-    startCommand: cd backend/submission-service && java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/submission-service-1.0.0.jar
+    env: docker
+    dockerfilePath: ./backend/submission-service/Dockerfile
+    dockerContext: ./backend/submission-service
     healthCheckPath: /actuator/health
     envVars:
       - key: JAVA_VERSION
