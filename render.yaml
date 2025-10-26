@@ -1,23 +1,15 @@
 databases:
-  # PostgreSQL Database
   - name: assignment-db
-    plan: free
-    region: oregon
     databaseName: assignment_system
     user: assignment_user
-    ipAllowList: []
 
 services:
-
   # User Service Backend
   - type: web
     name: user-service
-    plan: free
-    region: oregon
     env: docker
     dockerfilePath: ./backend/user-service/Dockerfile
     dockerContext: ./backend/user-service
-    healthCheckPath: /actuator/health
     envVars:
       - key: JAVA_VERSION
         value: 21
@@ -45,12 +37,9 @@ services:
   # Submission Service Backend
   - type: web
     name: submission-service
-    plan: free
-    region: oregon
     env: docker
     dockerfilePath: ./backend/submission-service/Dockerfile
     dockerContext: ./backend/submission-service
-    healthCheckPath: /actuator/health
     envVars:
       - key: JAVA_VERSION
         value: 21
@@ -81,7 +70,7 @@ services:
   - type: web
     name: assignment-frontend
     env: static
-    buildCommand: chmod +x build.sh && ./build.sh
+    buildCommand: pnpm install && pnpm run build
     staticPublishPath: ./dist
     headers:
       - path: /*
