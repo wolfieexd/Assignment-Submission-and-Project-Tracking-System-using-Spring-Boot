@@ -1,8 +1,36 @@
 // API Configuration and Helper Functions
-// Use the current hostname to support both localhost and network access
-const API_BASE_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:8081/api'
-  : `http://${window.location.hostname}:8081/api`;
+// Support for production deployment with environment variables
+const getApiBaseUrl = () => {
+  // Check if running in production (Vercel)
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  
+  // Local development
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:8081/api';
+  }
+  
+  // Network access (same machine different device)
+  return `http://${window.location.hostname}:8081/api`;
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
+// Submission service URL
+const getSubmissionApiUrl = () => {
+  if (import.meta.env.VITE_SUBMISSION_API_URL) {
+    return import.meta.env.VITE_SUBMISSION_API_URL;
+  }
+  
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:8082/api';
+  }
+  
+  return `http://${window.location.hostname}:8082/api`;
+};
+
+const SUBMISSION_API_URL = getSubmissionApiUrl();
 
 export interface RegisterRequest {
   name: string;
