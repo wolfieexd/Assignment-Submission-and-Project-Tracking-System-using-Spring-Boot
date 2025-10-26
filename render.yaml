@@ -81,7 +81,6 @@ services:
   - type: web
     name: assignment-frontend
     env: static
-    plan: free
     buildCommand: chmod +x build.sh && ./build.sh
     staticPublishPath: ./dist
     headers:
