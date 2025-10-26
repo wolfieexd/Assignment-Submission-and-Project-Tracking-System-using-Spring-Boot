@@ -5,12 +5,11 @@ services:
   # User Service - Authentication & User Management
   - type: web
     name: user-service
-    env: java
+    runtime: docker
     region: singapore
     plan: free
-    rootDir: backend/user-service
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -Xmx512m -Xms256m -jar target/user-service-1.0.0.jar --spring.profiles.active=neon
+    dockerfilePath: ./backend/user-service/Dockerfile
+    dockerContext: ./backend/user-service
     healthCheckPath: /api/auth/health
     envVars:
       - key: SPRING_PROFILES_ACTIVE
@@ -33,12 +32,11 @@ services:
   # Submission Service - Assignment & Submission Management
   - type: web
     name: submission-service
-    env: java
+    runtime: docker
     region: singapore
     plan: free
-    rootDir: backend/submission-service
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -Xmx512m -Xms256m -jar target/submission-service-1.0.0.jar --spring.profiles.active=neon
+    dockerfilePath: ./backend/submission-service/Dockerfile
+    dockerContext: ./backend/submission-service
     healthCheckPath: /api/assignments/health
     envVars:
       - key: SPRING_PROFILES_ACTIVE
