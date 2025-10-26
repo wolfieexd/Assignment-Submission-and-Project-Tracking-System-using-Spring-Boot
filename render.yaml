@@ -12,7 +12,7 @@ services:
   # User Service Backend
   - type: web
     name: user-service
-    runtime: java
+    env: java
     plan: free
     region: oregon
     buildCommand: cd backend/user-service && chmod +x build.sh && ./build.sh
@@ -45,7 +45,7 @@ services:
   # Submission Service Backend
   - type: web
     name: submission-service
-    runtime: java
+    env: java
     plan: free
     region: oregon
     buildCommand: cd backend/submission-service && chmod +x build.sh && ./build.sh
@@ -80,9 +80,8 @@ services:
   # Frontend Static Site
   - type: web
     name: assignment-frontend
-    runtime: static
+    env: static
     plan: free
-    region: oregon
     buildCommand: chmod +x build.sh && ./build.sh
     staticPublishPath: ./dist
     headers:
