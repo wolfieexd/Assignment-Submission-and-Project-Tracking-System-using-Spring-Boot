@@ -1,0 +1,51 @@
+# Ignore environment-specific files
+.env
+.env.local
+.env.production
+.env.development
+
+# Ignore uploaded files
+uploads/
+**/uploads/
+
+# Ignore log files
+logs/
+*.log
+**/logs/
+
+# Ignore IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# Ignore build artifacts
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore security-sensitive files
+**/*.pem
+**/*.key
+**/*.p12
+**/*.jks
+keystore.*
+truststore.*
+
+# Ignore database files
+*.db
+*.sqlite
+*.h2.db

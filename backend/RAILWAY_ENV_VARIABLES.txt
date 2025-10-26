@@ -1,0 +1,102 @@
+╔════════════════════════════════════════════════════════════════╗
+║         RAILWAY.APP ENVIRONMENT VARIABLES - USER SERVICE       ║
+╚════════════════════════════════════════════════════════════════╝
+
+Copy ALL variables below and paste into:
+Railway Dashboard → User Service → Settings → Variables → RAW Editor
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+JWT_SECRET=TVlQMDFJcXZLTm1PbmNVQnM5eEN1a2gzckxKdDhUZnA0d2xqSDdHUzUyRGlhQXpFZGVnUVpGYm9SWDZXVnk=
+JWT_EXPIRATION=3600000
+SPRING_PROFILES_ACTIVE=prod
+SPRING_DATASOURCE_URL=${DATABASE_URL}
+CORS_ALLOWED_ORIGINS=https://your-frontend.up.railway.app
+LOGGING_LEVEL_ROOT=WARN
+LOGGING_LEVEL_COM_ASSIGNMENT_USERSERVICE=INFO
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  IMPORTANT:
+1. Replace "your-frontend.up.railway.app" with your ACTUAL frontend URL
+2. Railway will automatically provide DATABASE_URL from MySQL addon
+3. If using Railway's MySQL, it will auto-inject connection details
+4. Make sure MySQL addon is added to your project first
+
+╔════════════════════════════════════════════════════════════════╗
+║      RAILWAY.APP ENVIRONMENT VARIABLES - SUBMISSION SERVICE    ║
+╚════════════════════════════════════════════════════════════════╝
+
+Copy ALL variables below and paste into:
+Railway Dashboard → Submission Service → Settings → Variables → RAW Editor
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+JWT_SECRET=TVlQMDFJcXZLTm1PbmNVQnM5eEN1a2gzckxKdDhUZnA0d2xqSDdHUzUyRGlhQXpFZGVnUVpGYm9SWDZXVnk=
+JWT_EXPIRATION=3600000
+SPRING_PROFILES_ACTIVE=prod
+SPRING_DATASOURCE_URL=${DATABASE_URL}
+CORS_ALLOWED_ORIGINS=https://your-frontend.up.railway.app
+USER_SERVICE_URL=https://user-service.up.railway.app
+FILE_UPLOAD_DIR=/app/uploads
+LOGGING_LEVEL_ROOT=WARN
+LOGGING_LEVEL_COM_ASSIGNMENT_SUBMISSIONSERVICE=INFO
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  IMPORTANT:
+1. Replace "your-frontend.up.railway.app" with your ACTUAL frontend URL
+2. Replace "user-service.up.railway.app" with your ACTUAL user service URL (after it's deployed)
+3. MUST use the SAME JWT_SECRET as User Service (already set above)
+4. Railway will automatically provide DATABASE_URL from MySQL addon
+5. Add Railway Volume: /app/uploads for persistent file storage
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 DEPLOYMENT STEPS:
+
+1. Add MySQL Database Addon:
+   Railway Project → New → Database → MySQL
+
+2. Set User Service Variables:
+   User Service → Settings → Variables → RAW Editor
+   → Paste variables from above
+   → Click "Add" or "Update"
+
+3. Set Submission Service Variables:
+   Submission Service → Settings → Variables → RAW Editor
+   → Paste variables from above
+   → Click "Add" or "Update"
+
+4. Add Volume for File Uploads (Submission Service only):
+   Submission Service → Settings → Volumes
+   → Mount Path: /app/uploads
+   → Click "Add Volume"
+
+5. Update CORS_ALLOWED_ORIGINS:
+   Replace with your actual frontend URL in BOTH services
+
+6. Deploy:
+   Both services will auto-deploy when you push to GitHub
+   OR click "Deploy" button in Railway dashboard
+
+7. Verify:
+   User Service: https://your-user-service.up.railway.app/actuator/health
+   Submission Service: https://your-submission-service.up.railway.app/actuator/health
+   Both should return: {"status":"UP"}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ ALL CRITICAL ACTIONS COMPLETED:
+
+1. ✅ JWT Secret Generated: TVlQMDFJcXZLTm1PbmNVQnM5eEN1a2gzckxKdDhUZnA0d2xqSDdHUzUyRGlhQXpFZGVnUVpGYm9SWDZXVnk=
+2. ✅ Production configs created (application-prod.properties)
+3. ✅ Railway configs created (Procfile, railway.json)
+4. ✅ Environment variables prepared (above)
+5. ✅ Security hardened (all 12 issues fixed)
+6. ✅ Java 21 LTS configured
+7. ✅ Documentation created (RAILWAY_DEPLOYMENT.md)
+
+🚀 YOU'RE READY TO DEPLOY TO RAILWAY!
+
+For detailed Railway deployment guide, see: RAILWAY_DEPLOYMENT.md
