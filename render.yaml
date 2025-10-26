@@ -3,55 +3,21 @@
 
 services:
   # User Service - Authentication & User Management
-  - type: web
-    name: user-service
-    runtime: docker
-    region: singapore
-    plan: free
-    dockerfilePath: ./backend/user-service/Dockerfile
-    dockerContext: ./backend/user-service
-    healthCheckPath: /api/auth/health
-    envVars:
-      - key: SPRING_PROFILES_ACTIVE
-        value: neon
-      - key: DB_HOST
-        sync: false
-      - key: DB_USER
-        sync: false
-      - key: DB_PASSWORD
-        sync: false
-      - key: DB_NAME
-        value: user_service_db
-      - key: JWT_SECRET
-        sync: false
-      - key: CORS_ALLOWED_ORIGINS
-        value: https://assig-sub.vercel.app,http://localhost:5173
-      - key: SERVER_PORT
-        value: 8080
+    - type: web
+      name: user-service
+      env: docker
+      dockerfilePath: backend/user-service/Dockerfile
+      region: singapore
+      plan: free
+      rootDir: backend/user-service
+      healthCheckPath: /api/auth/health
 
   # Submission Service - Assignment & Submission Management
-  - type: web
-    name: submission-service
-    runtime: docker
-    region: singapore
-    plan: free
-    dockerfilePath: ./backend/submission-service/Dockerfile
-    dockerContext: ./backend/submission-service
-    healthCheckPath: /api/assignments/health
-    envVars:
-      - key: SPRING_PROFILES_ACTIVE
-        value: neon
-      - key: DB_HOST
-        sync: false
-      - key: DB_USER
-        sync: false
-      - key: DB_PASSWORD
-        sync: false
-      - key: DB_NAME
-        value: submission_service_db
-      - key: JWT_SECRET
-        sync: false
-      - key: CORS_ALLOWED_ORIGINS
-        value: https://assig-sub.vercel.app,http://localhost:5173
-      - key: SERVER_PORT
-        value: 8080
+    - type: web
+      name: submission-service
+      env: docker
+      dockerfilePath: backend/submission-service/Dockerfile
+      region: singapore
+      plan: free
+      rootDir: backend/submission-service
+      healthCheckPath: /api/assignments/health
