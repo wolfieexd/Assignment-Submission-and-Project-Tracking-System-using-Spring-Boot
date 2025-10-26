@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: submission-service
+    env: java
+    region: singapore
+    plan: free
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/submission-service-1.0.0.jar --spring.profiles.active=neon
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: neon
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: submission_service_db
+      - key: JWT_SECRET
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://assig-sub.vercel.app,http://localhost:5173
+      - key: JAVA_TOOL_OPTIONS
+        value: -Xmx512m -Xms256m
